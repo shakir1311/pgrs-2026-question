@@ -22,6 +22,9 @@
   button { font: inherit; font-weight: 600; border: 2px solid var(--navy); color: var(--navy); background: #fff;
            border-radius: 10px; padding: 10px 14px; width: 100%; }
   .addr { font-weight: 700; word-break: break-all; }
+  .poster { display: block; border: 1px solid #B9C5D2; border-radius: 8px; overflow: hidden; margin: 0 0 8px; }
+  .poster img { display: block; width: 100%; height: auto; }
+  .hint a { color: var(--navy); font-weight: 600; }
   footer { color: var(--muted); font-size: 13px; margin-top: 22px; }
 </style>
 </head>
@@ -35,6 +38,12 @@
      parts in [brackets] with your question and your details.</p>
   <a class="button" id="write" href="#">Write my question</a>
   <p class="hint">Sent to <span class="addr" id="addr"></span></p>
+
+  <h2 style="font-size:17px;margin:22px 0 8px">See the poster</h2>
+  <p class="hint">Tap the poster to open it at full size and zoom in.</p>
+  <a class="poster" href="poster/poster.jpg"><img src="poster/poster-thumb.jpg" width="760" height="1076"
+     alt="The poster: Keeping Smart Devices Private and Honest While They Learn Together"></a>
+  <p class="hint"><a href="poster/poster.pdf">Download the poster as a PDF</a> (A1, sharpest for printing or close reading)</p>
 
   <h2 style="font-size:17px;margin:20px 0 8px">No email app on this phone?</h2>
   <p class="hint">Copy the message and send it from any email account.</p>
