@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ask a question about the poster</title>
+<style>
+  :root { --navy: #13365A; --gold: #F5B82E; --ink: #1C2430; --muted: #5B6670; --tint: #E9EEF4; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, "Source Sans Pro", Arial, sans-serif; color: var(--ink);
+         background: #fff; line-height: 1.45; }
+  header { background: var(--navy); color: #fff; padding: 22px 16px 18px; }
+  header p { margin: 0; color: var(--gold); font-weight: 700; font-size: 14px; letter-spacing: .04em; }
+  header h1 { margin: 6px 0 0; font-size: 22px; line-height: 1.25; }
+  main { max-width: 560px; margin: 0 auto; padding: 18px 16px 32px; }
+  .button { display: block; text-align: center; background: var(--navy); color: #fff; text-decoration: none; font-weight: 700;
+            font-size: 19px; padding: 16px; border-radius: 12px; margin: 14px 0 8px; }
+  .hint { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+  pre { white-space: pre-wrap; background: var(--tint); border-radius: 10px; padding: 14px; font: 15px/1.45 inherit;
+        font-family: inherit; margin: 0 0 10px; }
+  button { font: inherit; font-weight: 600; border: 2px solid var(--navy); color: var(--navy); background: #fff;
+           border-radius: 10px; padding: 10px 14px; width: 100%; }
+  .addr { font-weight: 700; word-break: break-all; }
+  footer { color: var(--muted); font-size: 13px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<header>
+  <p>PGRS WINTER CONFERENCE 2026 · ABERTAY UNIVERSITY</p>
+  <h1>Keeping Smart Devices Private and Honest While They Learn Together</h1>
+</header>
+<main>
+  <p>Thank you for stopping by the poster. Tap below and your email app opens with the message written; replace the
+     parts in [brackets] with your question and your details.</p>
+  <a class="button" id="write" href="#">Write my question</a>
+  <p class="hint">Sent to <span class="addr" id="addr"></span></p>
+
+  <h2 style="font-size:17px;margin:20px 0 8px">No email app on this phone?</h2>
+  <p class="hint">Copy the message and send it from any email account.</p>
+  <pre id="template"></pre>
+  <button id="copy" type="button">Copy the message</button>
+  <footer>Shakir Zareen, PhD Student, Abertay University. This page stores nothing and sends nothing by itself.</footer>
+</main>
+<script>
+  var to = 's.zareen2400@abertay.ac.uk';
+  var subject = 'Question about your PGRS Winter Conference 2026 poster';
+  var body = 'Hello Shakir,\r\n\r\n' +
+    'I saw your poster "Keeping Smart Devices Private and Honest While They Learn Together" at the PGRS Winter Conference 2026.\r\n\r\n' +
+    'My question:\r\n[Write your question here]\r\n\r\n' +
+    'About me:\r\nName: [Your name]\r\nField or organisation: [Your field or organisation]\r\n\r\n' +
+    'Best wishes,\r\n[Your name]\r\n';
+  document.getElementById('write').href =
+    'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.getElementById('addr').textContent = to;
+  document.getElementById('template').textContent = 'To: ' + to + '\nSubject: ' + subject + '\n\n' + body.replace(/\r/g, '');
+  document.getElementById('copy').addEventListener('click', function () {
+    var text = document.getElementById('template').textContent, btn = this;
+    function done() { btn.textContent = 'Copied'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  });
+  function fallback(text) {
+    var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(t);
+  }
+</script>
+</body>
+</html>
